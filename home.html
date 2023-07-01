@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register form</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="vendor/nouislider/nouislider.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="css/style.css">
+    <script src="index.js"></script>
+
+  <script
+    type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+  ></script>
+  <script type="text/javascript">
+    (function () {
+      emailjs.init("osClYwYnYjEu_fH-e");
+    })();
+  </script>
+
+<style>
+    .block {
+      display: block;
+      width: 95%;
+      border: none;
+      background-color: #04AA6D;
+      color: white;
+      padding: 14px 28px;
+      font-size: 16px;
+      cursor: pointer;
+      text-align: center;
+    }
+    
+    .block:hover {
+      background-color: #ddd;
+      color: black;
+    }
+    </style>
+</head>
+<body>
+
+    <div class="main">
+
+        <div class="container">
+            <div class="signup-content">
+                <div class="signup-img">
+                    <img src="images/form-img.jpg" alt="">
+                    <div class="signup-img-content">
+                        <h2>Register..</h2>
+                      
+                    </div>
+                </div>
+                <div class="signup-form">
+                    <form method="POST" class="register-form" id="register-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <div class="form-input">
+                                    <label for="first_name" class="required">Full  Name</label>
+                                    <input type="text" id="name" name="name" placeholder="Enter name" />
+                                </div>
+                                <div class="form-input">
+                                    <label for="Department" class="required">Department</label>
+                                    <input type="text" id="dept" name="brand" maxlength="30" placeholder="Enter department" />
+                                </div>
+                    
+                                <div class="form-input">
+                                    <label for="phone_number" class="required">Batch</label>
+                                    <input type="text" id="batch" name="batch" placeholder="Enter batch" maxlength="30" />
+                                </div>
+
+                                <div class="form-input">
+                                    <label for="email" class="required">Email</label>
+                                    <input type="text" name="id" id="email" placeholder="Enter email" />
+                                </div>
+                                
+                                <div class="form-input">
+                                    <label for="course" class="required">Course</label>
+                                    <input type="text" id="course" name="type"  placeholder="Enter course" maxlength="50" />
+                                </div>
+                                
+                                <div class="form-input">
+                                    <label for="Joining date" class="required">Joining date</label>
+                                    <input type="date"  id="mdate" name="manfdate" value="Enter Joining date"  />
+                                </div>
+
+                                <div class="form-input">
+                                    <label for="marks" class="required">Marks</label>
+                                    <input type="text" id="marks" name="price"placeholder="Enter marks" maxlength="10" />
+                                </div>
+
+                                <div class="form-input">
+                                    <label for="grade" class="required">Duration(in months)</label>
+                                    <input type="number" id="grade" name="size" placeholder="Enter duration" maxlength="10" />
+                                </div>
+
+                               
+                                
+                                <table>
+                                    <tr hidden="">
+                                        <td> COURSE END DATE </td>
+                                        <td>
+                                          <input type="date" name="exprydate" value="" />
+                                        </td>
+                                      </tr>
+                                    </table>  
+
+                            </div>
+                           
+                                
+                        </div>
+                        <div class="form-submit">
+                           <button class="block" type="button" name="submit" onclick="sendMail()">Register</button>
+                          </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JS -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/nouislider/nouislider.min.js"></script>
+    <script src="vendor/wnumb/wNumb.js"></script>
+    <script src="vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="vendor/jquery-validation/dist/additional-methods.min.js"></script>
+    <script src="js/main.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+<script> 
+  function sendMail() {
+    var params = {
+      dept: document.getElementById("dept").value,
+      name: document.getElementById("name").value,
+      batch: document.getElementById("batch").value,
+      email: document.getElementById("email").value,
+      mdate: document.getElementById("mdate").value,
+      marks: document.getElementById("marks").value,
+      grade: document.getElementById("grade").value,
+      course: document.getElementById("course").value,
+    };
+  
+    const serviceID = "service_c0pdhhn";
+    const templateID = "template_kc22xor";
+  
+      emailjs.send(serviceID, templateID, params)
+      .then(res=>{
+          document.getElementById("dept").value = "";
+          document.getElementById("name").value = "";
+          document.getElementById("batch").value = "";
+          document.getElementById("email").value = "";
+          document.getElementById("mdate").value = "";
+          document.getElementById("marks").value = "";
+          document.getElementById("grade").value = "";
+          document.getElementById("course").value = "";
+          console.log(res);
+          alert("Details added successfully to the blockchain!!")
+  
+      })
+      .catch(err=>console.log(err));
+   
+  }
+  </script>
+</html>
